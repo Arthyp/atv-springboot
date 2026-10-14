@@ -16,4 +16,5 @@ public interface AutorCrudService {
     AutorResponseDto atualizarAutor(Long id, AutorPostPutDto autorPostPutDto);
 
     void removerAutor(Long id);
+    //lembrar de fazer operação cascada nos livros ao remover autor
 }
