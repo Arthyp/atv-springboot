@@ -1,38 +1,42 @@
+
 package biblioteca.biblioteca.Model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Table(name = "tb_livro")
+@Getter
+@Setter
 @Builder
-@Data
-@Table(name = "tb_autor")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Livro {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @Column(name = "ds_isbn", nullable = false, unique = true)
+    private String ISBN;
+
     @Column(name = "ds_tituloLivro", nullable = false)
-    @JsonProperty("tituloLivro")
     private String tituloLivro;
 
-    @Column(name = "ds_ISBN", nullable = false)
-    @JsonProperty("ISBN")
-    private Long ISBN;
-
-    @Column(name = "ds_Ano", nullable = false)
-    @JsonProperty("Ano")
-    private Int Ano;
+    @Column(name = "ds_ano", nullable = false)
+    private Integer ano;
 
     @Column(name = "ds_nomeEdicao", nullable = false)
-    @JsonProperty("nomeEdicao")
     private String nomeEdicao;
 
-    //Criar coluna de relacionamento para Autor e livro aqui a baixo
-    //@Column
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "autor_id", nullable = false)
+    private Autor autor;
 }

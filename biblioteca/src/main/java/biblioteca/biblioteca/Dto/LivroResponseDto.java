@@ -1,25 +1,27 @@
+
 package biblioteca.biblioteca.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AutorResponseDto {
+public class LivroResponseDto {
+
     @JsonProperty("ISBN")
-    private Long ISBN;
+    private String ISBN;
 
     @JsonProperty("tituloLivro")
     private String tituloLivro;
 
-    @JsonProperty("ds_Ano")
-    private Int Ano;
+    @JsonProperty("ano")
+    private Integer ano;
 
     @JsonProperty("nomeEdicao")
     private String nomeEdicao;
+
+    @JsonProperty("autorId")
+    private Long autorId;
 }
